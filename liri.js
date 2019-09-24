@@ -1,6 +1,6 @@
 require("dotenv").config();
 var Spotify = require('node-spotify-api')
-
+var moment = require('moment');
 var keys = require("./keys.js");
 var spotify = new Spotify(keys.spotify);
 var axios = require("axios");
@@ -13,8 +13,15 @@ if (process.argv[2] === "concert-this") {
     axios
     .get(queryUrl)
     .then(function(response){
-        console.log(response.data.venue);
-        console.log(response.data.venue.city);
+        console.log(response.data[0].venue.name);
+        console.log(response.data[0].venue.city);
+        console.log(moment(response.data[0].datetime).format('L'))
+        
+    })
+    .catch(function(error){
+        if (error.response) {
+            console.log(error.response.data);
+        }
     })
 }
 
