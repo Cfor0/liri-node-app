@@ -38,8 +38,26 @@ if (process.argv[2] === "concert-this") {
 } else if (process.argv[2] === "movie-this") {
     var movieName = process.argv[3];
     axios
-        .get("http://www.omdbapi.com/?t=" + movieName + "apikey=trilogy&")
+        .get("http://www.omdbapi.com/?t=" + movieName + "&apikey=trilogy&")
+        .then(function (response) {
+            console.log(response.data.Title);
+            console.log(response.data.Released);
+            console.log(response.data.Ratings[0]);
+            console.log(response.data.Ratings[1]);
+            console.log(response.data.Country);
+            console.log(response.data.Language);
+            console.log(response.data.Plot);
+            console.log(response.data.Actors);
+        })
+        .catch(function (error) {
+            axios
+           .get("http://www.omdbapi.com/?t=mr.+nobody&apikey=trilogy")
+           console.log(response.data);
+        });
+} else if (process.argv[2] === "do-what-it-says") {
+    
 }
+
 
 
 
