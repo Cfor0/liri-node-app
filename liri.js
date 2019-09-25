@@ -33,7 +33,12 @@ if (process.argv[2] === "concert-this") {
         if (err) {
             return console.log("Error occurred: " + err);
         }
-        console.log(data);
+        console.log("Artist: ", data.tracks.items[0].artists[0].name);
+        console.log("Songs name: ", data.tracks.items[0].name);
+        console.log("Preview link: ", data.tracks.items[0].preview_url);
+        console.log("Album: ", data.tracks.items[0].album.name);
+
+
     })
 } else if (process.argv[2] === "movie-this") {
     var movieName = process.argv[3];
@@ -55,7 +60,7 @@ if (process.argv[2] === "concert-this") {
            console.log(response.data);
         });
 } else if (process.argv[2] === "do-what-it-says") {
-    
+
 }
 
 
