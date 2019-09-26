@@ -4,6 +4,7 @@ var moment = require('moment');
 var keys = require("./keys.js");
 var spotify = new Spotify(keys.spotify);
 var axios = require("axios");
+var fs = require("fs");
 
 
 if (process.argv[2] === "concert-this") {
@@ -29,16 +30,16 @@ if (process.argv[2] === "concert-this") {
         id: "b00c5a1a3a9241d6a3a98ce9e172d878",
         secret: "666b69bc26b84fb3aab7ac4af56000d8"
     });
-    spotify.search({ type: 'track', query: songName }, function (err, data) {
+    spotify.search({ type: 'track', query: songName }, function spotify(err, data) {
         if (err) {
             return console.log("Error occurred: " + err);
+        } else {
+            console.log("Artist: ", data.tracks.items[0].artists[0].name);
+            console.log("Songs name: ", data.tracks.items[0].name);
+            console.log("Preview link: ", data.tracks.items[0].preview_url);
+            console.log("Album: ", data.tracks.items[0].album.name);
+
         }
-        console.log("Artist: ", data.tracks.items[0].artists[0].name);
-        console.log("Songs name: ", data.tracks.items[0].name);
-        console.log("Preview link: ", data.tracks.items[0].preview_url);
-        console.log("Album: ", data.tracks.items[0].album.name);
-
-
     })
 } else if (process.argv[2] === "movie-this") {
     var movieName = process.argv[3];
@@ -56,11 +57,21 @@ if (process.argv[2] === "concert-this") {
         })
         .catch(function (error) {
             axios
-           .get("http://www.omdbapi.com/?t=mr.+nobody&apikey=trilogy")
-           console.log(response.data);
+                .get("http://www.omdbapi.com/?t=mr.+nobody&apikey=trilogy")
+            console.log(response.data);
         });
 } else if (process.argv[2] === "do-what-it-says") {
 
+    fs.readFile("random.txt", "utf8", function (err, data) {
+        if (err) {
+            return console.log(err);
+        }
+        var data = process.argv.slice(3).join(" ");
+        var dataArr = data.split(",")
+        if (dataArr[1] === "I Want it That Way") {
+            spotify();
+        }
+    })
 }
 
 
