@@ -2,6 +2,8 @@
 
 * This app is designed to take the user input (proccess.argv[2]) from the console and output information associated with the(process.argv[3]).
 
+* Once the data has been retrieved from the API, I grab the first result from the response. These callbacks use `axios` and `spotify` packages.
+
 * User input: 
     * concert-this
         * Outputs (Artist or band name):
@@ -20,6 +22,6 @@
 
 
 * do-what-it-says
-    * This input takes a specfic output from a text file that outputs the spotify function for that file.
+    * This input takes a specfic output from a text file that outputs the `spotify` function for that file.
         
 
