@@ -5,6 +5,7 @@
 * Once the data has been retrieved from the API, I grab the first result from the response. These callbacks use `axios` and `spotify` packages.
 
 liri-app.gif
+ *example*
  
 * User input: 
     * concert-this
